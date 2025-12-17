@@ -75,6 +75,10 @@ export function ModelCard({ model, isVisible }: ModelCardProps) {
                 onLoad={() => setIsLoading(false)}
                 title={model.name}
               />
+              {/* Overlay to hide iframe's AR button on mobile */}
+              {!isDesktop && (
+                <div className="absolute bottom-0 right-0 w-24 h-16 bg-gradient-to-br from-stone-50 to-white pointer-events-none z-10" />
+              )}
               {/* AR Icon Button - Desktop Only */}
               {isDesktop && hasQRCode && (
                 <button
