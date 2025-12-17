@@ -58,7 +58,7 @@ export function ModelCard({ model, isVisible }: ModelCardProps) {
         </div>
 
         {/* 3D Model Container */}
-        <div className="aspect-[4/3] md:aspect-[16/8] w-full relative bg-gradient-to-br from-stone-50 to-white">
+        <div className="aspect-[4/5] md:aspect-[16/8] w-full relative bg-gradient-to-br from-stone-50 to-white">
           {isLoading && shouldLoad && (
             <div className="absolute inset-0 flex items-center justify-center bg-stone-50 z-10">
               <Loader2 className="h-8 w-8 animate-spin text-stone-400" />
@@ -93,6 +93,24 @@ export function ModelCard({ model, isVisible }: ModelCardProps) {
             </div>
           )}
         </div>
+
+        {/* Mobile AR Button - Below Card */}
+        {!isDesktop && hasQRCode && (
+          <div className="px-4 pb-4">
+            <button
+              onClick={() => {
+                // Open the AR view - this would typically open the model in AR
+                if (model.url) {
+                  window.open(model.url, '_blank')
+                }
+              }}
+              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-stone-700 to-stone-800 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
+            >
+              <Scan className="h-5 w-5" />
+              View in your space
+            </button>
+          </div>
+        )}
       </div>
 
       {/* QR Code Panel */}
