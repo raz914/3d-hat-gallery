@@ -75,10 +75,6 @@ export function ModelCard({ model, isVisible }: ModelCardProps) {
                 onLoad={() => setIsLoading(false)}
                 title={model.name}
               />
-              {/* Overlay to hide iframe's AR button on mobile */}
-              {!isDesktop && (
-                <div className="absolute bottom-0 right-0 w-24 h-16 bg-gradient-to-br from-stone-50 to-white pointer-events-none z-10" />
-              )}
               {/* AR Icon Button - Desktop Only */}
               {isDesktop && hasQRCode && (
                 <button
@@ -97,24 +93,6 @@ export function ModelCard({ model, isVisible }: ModelCardProps) {
             </div>
           )}
         </div>
-
-        {/* Mobile AR Button - Below Card */}
-        {!isDesktop && hasQRCode && (
-          <div className="px-4 pb-4">
-            <button
-              onClick={() => {
-                // Open the AR view - this would typically open the model in AR
-                if (model.url) {
-                  window.open(model.url, '_blank')
-                }
-              }}
-              className="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-stone-700 to-stone-800 text-white font-medium shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
-            >
-              <Scan className="h-5 w-5" />
-              View in your space
-            </button>
-          </div>
-        )}
       </div>
 
       {/* QR Code Panel */}
